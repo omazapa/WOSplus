@@ -7,3 +7,6 @@ unidecode
 python-levenshtein
 requests_testadapter
 venn
+dask
+dask[dataframe]
+psutil

@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import dask.dataframe as dd
 
 from unidecode import unidecode
 try:
@@ -86,7 +87,7 @@ def merge_by_series(
         right_extra_on='UDEA_nombre revista o premio',
         close_matches=False,
         cutoff=0.6,
-        cutoff_extra=0.6):
+        cutoff_extra=0.6,parallel=True):
     '''
     Merge with outer but returning left-inner, inner, right-inner
     WARNING: right_on cannot be empty
@@ -103,7 +104,15 @@ def merge_by_series(
         sys.exit('Right series cannot have empty elements with outer method')
 
     if not close_matches:
-        kk = fill_NaN(left.merge(right, how='outer',
+        if parallel:
+            dd_left  = dd.from_pandas(left, npartitions=left.columns.shape[0])
+            dd_right = dd.from_pandas(right, npartitions=right.columns.shape[0])
+            kk = fill_NaN(dd_left.merge(dd_right, how='outer',
+                                 left_on=left_on, right_on=right_on)).compute()
+            print("Merging in parallel")
+        else:
+            print("Merging sequencially")
+            kk = fill_NaN(left.merge(right, how='outer',
                                  left_on=left_on, right_on=right_on))
     else:
         kk = fill_NaN(

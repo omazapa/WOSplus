@@ -44,7 +44,7 @@ def merge_inner_interior_exterior(
         right_extra_on='UDEA_nombre revista o premio',
         close_matches=False,
         cutoff=0.6,
-        cutoff_extra=0.6):
+        cutoff_extra=0.6,parallel=True):
     '''
     Given a df LEFT and a RIGHT[RIGHT[on_condition]!=''] fully True, then
     Get a tuple with the following 3 dataframes
@@ -61,7 +61,7 @@ def merge_inner_interior_exterior(
         interior, inner, exterior = merge_by_series(LEFT.copy(), RIGHT.copy(), left_on=left_on, right_on=right_on,
                                                     left_series=left_series, right_series=right_series,
                                                     left_extra_on=left_extra_on, right_extra_on=right_extra_on,
-                                                    close_matches=close_matches, cutoff=cutoff, cutoff_extra=cutoff_extra)
+                                                    close_matches=close_matches, cutoff=cutoff, cutoff_extra=cutoff_extra,parallel=parallel)
         if LEFT.shape[0] >= interior.shape[0] and RIGHT.shape[0] >= exterior.shape[0]:
             return inner.reset_index(
                 drop=True), interior.reset_index(
@@ -329,7 +329,7 @@ class wosplus:
 
     def merge(self, left, right, left_DOI, left_TI, left_extra_journal,
               left_author, left_year, right_DOI, right_TI, right_extra_journal,
-              right_author, right_year):
+              right_author, right_year,parallel=True):
         """
         Merge left and right bibliographic dataframes by TYPE and with
         Python merge ooption: `how='outer'`.
@@ -416,7 +416,7 @@ class wosplus:
             left_on='LEFT_simple_doi',
             right_on='RIGHT_simple_doi',
             left_series=LEFT_series,
-            right_series=RIGHT_series)
+            right_series=RIGHT_series,parallel=parallel)
         if LR[0].shape[0]:
             # LEFT.shape[0]=inner.shape[0]+new_LEFT.shape[0]
             inner, new_LEFT, new_RIGHT = LR
@@ -458,7 +458,7 @@ class wosplus:
                 left_on='LEFT_Simple_title',
                 right_on='RIGHT_Simple_title',
                 left_series=LEFT_series,
-                right_series=RIGHT_series)
+                right_series=RIGHT_series,parallel=parallel)
             if LR[0].shape[0]:
                 inner, new_LEFT, new_RIGHT = LR
                 inner['Tipo'] = inner['Tipo'] + '_{}'.format(right)
@@ -501,7 +501,7 @@ class wosplus:
                 left_extra_on=left_extra_journal,
                 right_extra_on=right_extra_journal,
                 close_matches=True,
-                cutoff=0.6)
+                cutoff=0.6,parallel=parallel)
             if LR[0].shape[0]:
                 inner, new_LEFT, new_RIGHT = LR
                 inner['Tipo'] = inner['Tipo'] + '_{}'.format(right)

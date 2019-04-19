@@ -81,13 +81,39 @@ class PrimesTestCase(unittest.TestCase):
         self.assertTrue(
             self.cib.WOS_SCI_SCP[self.cib.WOS_SCI_SCP.Tipo == "WOS_SCI_SCP"].shape[0] == 6)
 
+        values = list(self.cib.WOS_SCI_SCP.Tipo.values)
+        values.sort() #sotring because in parallel the order is different
         self.assertTrue(
-            list(
-                self.cib.WOS_SCI_SCP.Tipo.values) == ['WOS', 'WOS', 'WOS', 'WOS', 'WOS', 'WOS', 'WOS_SCI', 'SCI', 'WOS',
-                                                      'WOS', 'WOS', 'WOS', 'WOS', 'WOS', 'WOS', 'WOS', 'WOS', 'WOS_SCI',
-                                                      'WOS_SCI', 'WOS_SCI', 'WOS_SCP', 'WOS_SCI_SCP', 'WOS_SCI_SCP',
-                                                      'WOS_SCI_SCP', 'SCI_SCP', 'WOS_SCP', 'WOS_SCI_SCP', 'WOS_SCI_SCP',
-                                                      'WOS_SCI_SCP', 'SCP'])
+            values == ['SCI',
+                       'SCI_SCP',
+                       'SCP',
+                       'WOS',
+                       'WOS',
+                       'WOS',
+                       'WOS',
+                       'WOS',
+                       'WOS',
+                       'WOS',
+                       'WOS',
+                       'WOS',
+                       'WOS',
+                       'WOS',
+                       'WOS',
+                       'WOS',
+                       'WOS',
+                       'WOS',
+                       'WOS_SCI',
+                       'WOS_SCI',
+                       'WOS_SCI',
+                       'WOS_SCI',
+                       'WOS_SCI_SCP',
+                       'WOS_SCI_SCP',
+                       'WOS_SCI_SCP',
+                       'WOS_SCI_SCP',
+                       'WOS_SCI_SCP',
+                       'WOS_SCI_SCP',
+                       'WOS_SCP',
+                       'WOS_SCP'])
 
     def test_normalize(self):
         self.cib.normalize()

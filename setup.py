@@ -75,6 +75,9 @@ def main():
             'unidecode',
             'python-levenshtein',
             'venn',
+            'dask',
+            'dask[dataframe]',
+            'psutil',
         ],
     )
 
