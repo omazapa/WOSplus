@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Colav'
+project = 'Colav WOSPlus'
 #copyright = '2019, Colav Org'
 author = 'Diego Restrepo, Omar Zapata'
 
@@ -110,7 +110,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Colavdoc'
+htmlhelp_basename = 'ColavWOSPlusdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -137,7 +137,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'Colav.tex', 'Colav Documentation',
+    (master_doc, 'ColavWOSPlus.tex', 'Colav WOSPlus Documentation',
      'Diego Restrepo', 'manual'),
 ]
 
@@ -147,7 +147,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'colav', 'Colav Documentation',
+    (master_doc, 'colav', 'Colav WOSPlus Documentation',
      [author], 1)
 ]
 
@@ -158,7 +158,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'Colav', 'Colav Documentation',
+    (master_doc, 'ColavWOSPlus', 'Colav WOSPlus Documentation',
      author, 'Colav', 'One line description of project.',
      'Miscellaneous'),
 ]
